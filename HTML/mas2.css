@@ -1,0 +1,142 @@
+.welcome-screen {
+    background-color: rgba(255, 255, 255, 1.0);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+  
+.welcome-screen .div {
+    background-color: rgba(255, 255, 255, 1.0);
+    background: linear-gradient(
+      180deg,
+      rgb(146, 163, 253) 0%,
+      rgb(157, 206, 255) 100%
+    );
+    width: 375px;
+    height: 812px;
+    position: relative;
+  }
+  
+.welcome-screen .overlap-group {
+    position: absolute;
+    width: 315px;
+    height: 60px;
+    top: 712px;
+    left: 30px;
+    border-radius: 99px;
+}
+  
+.welcome-screen .rectangle {
+    position: absolute;
+    width: 315px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    background-color: var(--white-color);
+    border-radius: 99px;
+}
+  
+.welcome-screen .text-wrapper {
+    position: absolute;
+    top: 17px;
+    left: 110px;
+    background: linear-gradient(
+      180deg,
+      rgb(146, 163, 253) 0%,
+      rgb(157, 206, 255) 100%
+    );
+    -webkit-background-clip: text !important;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /*text-fill-color: transparent;*/
+    font-family: "Poppins-Bold", Helvetica;
+    font-weight: 700;
+    color: transparent;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+  
+.welcome-screen .group {
+    position: absolute;
+    width: 250px;
+    height: 81px;
+    top: 325px;
+    left: 62px;
+}
+  
+.welcome-screen .group-2 {
+    position: relative;
+    width: 252px;
+    height: 81px;
+}
+  
+.welcome-screen .text-wrapper-2 {
+    position: absolute;
+    width: 250px;
+    top: 64px;
+    left: 0;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: var(--gray-1);
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.welcome-screen .cor-sano-wrapper {
+    position: absolute;
+    width: 162px;
+    height: 54px;
+    top: 0;
+    left: 44px;
+}
+  
+.welcome-screen .cor-sano {
+    position: absolute;
+    height: 54px;
+    top: 0;
+    left: 0;
+    font-family: "Poppins-Bold", Helvetica;
+    font-weight: 700;
+    color: transparent;
+    font-size: 36px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+  
+.welcome-screen .span {
+    color: #1d1517;
+}
+  
+.welcome-screen .text-wrapper-3 {
+    color: #ffffff;
+}
+
+  /* From Uiverse.io by suda-code */ 
+button {
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 100px;
+    background-color: #2ba8fb;
+    color: #ffffff;
+    font-weight: Bold;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+  
+button:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+  
+button:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
