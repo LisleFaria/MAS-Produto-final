@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cor Sano - Saudável na universidade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4a90e2;
+            background: linear-gradient(
+              180deg,
+              rgb(146, 163, 253) 0%,
+              rgb(157, 206, 255) 100%
+            );
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between; /* Align content to the right */
+            align-items: center; /* Vertically center the content */
+            font-size: 1.5rem;
+        }
+
+        header img {
+            width: 40px; /* Set the image size */
+            height: auto;
+        }
+
+        header i {
+            font-size: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #ffffff;
+            background: linear-gradient(
+              180deg,
+              rgb(146, 163, 253) 0%,
+              rgb(157, 206, 255) 100%
+            );
+            padding: 0.5rem 0;
+            border-top: 1px solid #ccc;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav a i {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .container {
+          padding: 2rem;
+          padding-bottom: 5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          margin-top: 3rem; 
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 50px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.7rem 1rem;
+            background-color: #4a90e2;
+            background: linear-gradient(
+              180deg,
+              rgb(146, 163, 253) 0%,
+              rgb(157, 206, 255) 100%
+            );
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+      <img src="https://play-lh.googleusercontent.com/Phfn3jufrHtx-mJYPqMqoO54eAJC29cvSelPnJrRXWCNXLOhepIsBnK0tu_MbnHyfo4">
+      <i class="fa fa-sign-out" aria-hidden="true"></i>
+    </header>
+    
+    <div class="container">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="https://i.pinimg.com/736x/d8/d4/d7/d8d4d70aec56779246ef56292c9b4d07.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Histórico de aulas</h5>
+                <p class="card-text">Veja o quê foi feito nas suas últimas aulas e deixe uma avaliação.</p>
+                <a href="#" class="button">Checar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="https://i.pinimg.com/736x/93/ae/c6/93aec605001d58e38846b49b79ca6834.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Planos alimentares</h5>
+                <p class="card-text">Descubra novas maneiras de se alimentar de forma saudável.</p>
+                <a href="#" class="button">Explore</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="https://i.pinimg.com/736x/a8/2f/65/a82f65fb9abf871c354e8529d8691bd4.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Meta diária</h5>
+                <p class="card-text">Verifique o quanto falta para cumprir sua meta estabelecida.</p>
+                <a href="#" class="button">Clique aqui</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-search" aria-hidden="true"></i></i></a>
+        <a href="#"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+    </nav>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+  
+</body>
+</html>
