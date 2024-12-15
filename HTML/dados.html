@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Fitness - Cor Sano</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="mas.css">
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 shadow-lg" style="width: 100%; max-width: 500px;">
+            <h3 class="text-center mb-4">Seus Dados Fitness</h3>
+
+            <!-- Formulário -->
+            <div id="profileForm" style="display: none; padding: 2rem;">
+                <h2>Complete o seu perfil</h2>
+                <form onsubmit="saveProfileData(); return false;">
+                    <label for="weight">Peso (kg):</label>
+                    <input type="number" id="weight" class="form-control" required><br>
+            
+                    <label for="height">Altura (cm):</label>
+                    <input type="number" id="height" class="form-control" required><br>
+            
+                    <label for="age">Idade:</label>
+                    <input type="number" id="age" class="form-control" required><br>
+            
+                    <label for="goal">Objetivo Fitness</label>
+                    <select id="goal" class="form-control">
+                        <option value="Perda de Peso">Selecione</option>
+                        <option value="Perda de Peso">Perda de Peso</option>
+                        <option value="Ganho de Massa">Ganho de Massa</option>
+                        <option value="Manter Forma">Manter Forma</option>
+                    </select><br>
+            
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+            
+            <!-- Dados Existentes -->
+            <div id="data-section" style="display: none;">
+                <p><strong>Nome:</strong> <span id="user-name"></span></p>
+                <p><strong>Peso:</strong> <span id="user-weight"></span> kg</p>
+                <p><strong>Altura:</strong> <span id="user-height"></span> cm</p>
+                <p><strong>Idade:</strong> <span id="user-age"></span></p>
+                <p><strong>Objetivo:</strong> <span id="user-goal"></span></p>
+                <h5 class="mt-3">Seu IMC: <span id="user-imc" class="fw-bold"></span></h5>
+                <p id="imc-category"></p>
+                <button class="btn btn-danger w-100 mt-3" onclick="logout()">Sair</button>
+                <button class="btn btn-primary w-100 mt-3" onclick="goToHomePage()">Ir para a Home Page</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+            if (!user) {
+                alert("Você precisa estar logado!");
+                window.location.href = "login.html";
+                return;
+            }
+
+            // Verifica se os dados já foram preenchidos
+            if (user.weight && user.height && user.age && user.goal) {
+                // Exibe os dados do usuário
+                document.getElementById("data-section").style.display = "block";
+                document.getElementById("user-name").textContent = user.name;
+                document.getElementById("user-weight").textContent = user.weight;
+                document.getElementById("user-height").textContent = user.height;
+                document.getElementById("user-age").textContent = user.age;
+                document.getElementById("user-goal").textContent = user.goal;
+                document.getElementById("user-imc").textContent = user.imc;
+
+                // Categoria do IMC
+                let imcCategory = "";
+                const imc = parseFloat(user.imc);
+                if (imc < 18.5) {
+                    imcCategory = "Abaixo do peso";
+                } else if (imc >= 18.5 && imc < 24.9) {
+                    imcCategory = "Peso normal";
+                } else if (imc >= 25 && imc < 29.9) {
+                    imcCategory = "Sobrepeso";
+                } else {
+                    imcCategory = "Obesidade";
+                }
+                document.getElementById("imc-category").textContent = imcCategory;
+            } else {
+                document.getElementById("profileForm").style.display = "block";
+            }
+        });
+
+        function saveProfileData() {
+            const weight = document.getElementById("weight").value;
+            const height = document.getElementById("height").value;
+            const age = document.getElementById("age").value;
+            const goal = document.getElementById("goal").value;
+
+            const imc = (weight / ((height / 100) * (height / 100))).toFixed(2);
+
+            let user = JSON.parse(localStorage.getItem("loggedInUser"));
+            user.weight = weight;
+            user.height = height;
+            user.age = age;
+            user.goal = goal;
+            user.imc = imc;
+
+            // Atualiza no LocalStorage
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            users = users.map(u => (u.email === user.email ? user : u));
+            localStorage.setItem("users", JSON.stringify(users));
+
+            alert(`Dados salvos com sucesso! Seu IMC é ${imc}.`);
+            window.location.href = "home page.html";
+        }
+
+        function goToHomePage() {
+            window.location.href = "home page.html"; // Redireciona para a homepage
+        }
+
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "login.html"; // Redireciona para login
+        }
+    </script>
+</body>
+</html>

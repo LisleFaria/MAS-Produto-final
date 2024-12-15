@@ -122,8 +122,13 @@
 <body>
     <header>
       <img src="https://play-lh.googleusercontent.com/Phfn3jufrHtx-mJYPqMqoO54eAJC29cvSelPnJrRXWCNXLOhepIsBnK0tu_MbnHyfo4">
-      <i class="fa fa-sign-out" aria-hidden="true"></i>
+      <a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
     </header>
+    <div class="container">
+      <!-- Saudações com nome do usuário -->
+      <div id="user-greeting" class="mb-3">
+          <h1>Olá, <span id="user-name"></span>!</h1>
+      </div>
     
     <div class="container">
         <div class="card mb-3" style="max-width: 540px;">
@@ -214,19 +219,42 @@
       </div>
     </div>
 
-    <nav>
-        <a href="home page.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+    <nav class="fixed-bottom">
+        <a href="home page.html"><i class="fa fa-home active" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i></a>
         <a href="" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
-        <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+        <a href="profile.html"><i class="fa fa-user-o" aria-hidden="true"></i></a>
     </nav>
+    <script>
+      // Função para verificar se o usuário está logado
+      function checkLogin() {
+        const user = JSON.parse(localStorage.getItem("loggedInUser"));
+        
+        if (user) {
+            // Se o usuário estiver logado, exibe a saudação com o nome dele
+            document.getElementById("user-name").textContent = user.name;
+        } else {
+            // Caso contrário, redireciona para a página de login
+            alert("Você precisa estar logado!");
+            window.location.href = "login.html";
+        }
+      }
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
-  <script src="home page.js"></script>
-  
+      // Função de logout
+      function logout() {
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "login.html"; // Redireciona para a página de login
+      }
+
+      // Chama a função de verificação ao carregar a página
+      document.addEventListener("DOMContentLoaded", checkLogin);
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="home page.js"></script>
 </body>
 </html>
