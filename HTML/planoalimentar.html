@@ -28,113 +28,159 @@
           justify-content: space-between; /* Align content to the right */
           align-items: center; /* Vertically center the content */
           font-size: 1.5rem;
-      }
-      header img {
-          width: 40px; /* Set the image size */
-          height: auto;
-      }
+        }
 
-      header i {
-          font-size: 1.5rem;
-      }
+        header img {
+            width: 40px; /* Set the image size */
+            height: auto;
+        }
+        header a {
+            color: white; /* Makes the icon or link white */
+            text-decoration: none; /* Removes underline for links */
+        }
 
-      nav {
-          display: flex;
-          justify-content: space-around;
-          background-color: #ffffff;
-          background: linear-gradient(
+        header a:hover {
+            color: #f0f0f0; /* Subtle hover effect for better feedback */
+        }
+
+        header i {
+            font-size: 1.5rem;
+            color: inherit;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #ffffff;
+            background: linear-gradient(
+                180deg,
+                rgb(146, 163, 253) 0%,
+                rgb(157, 206, 255) 100%
+            );
+            padding: 0.5rem 0;
+            border-top: 1px solid #ccc;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav a i {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .container {
+            padding: 2rem;
+            padding-bottom: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 3rem; 
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 50px;
+        }
+        #classResults {
+            margin-top: 20px;
+        }
+        .result-item {
+            margin: 10px 0;
+        }
+        #toggleFilters {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+        .btn-primary {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.7rem 1rem;
+        background-color: #4a90e2;
+        background: linear-gradient(
             180deg,
             rgb(146, 163, 253) 0%,
             rgb(157, 206, 255) 100%
-          );
-          padding: 0.5rem 0;
-          border-top: 1px solid #ccc;
-          box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-          position: sticky;
-          bottom: 0;
-          width: 100%;
-      }
+        );
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        text-align: center;
+        outline: none;
+        border: none;
+        }
 
-      nav a {
-          text-decoration: none;
-          color: #ffffff;
-          font-size: 1rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-      }
+        .btn-primary:focus {
+            box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+        }
 
-      nav a i {
-          font-size: 1.5rem;
-          margin-bottom: 0.2rem;
-      }
+        .modal .btn-outline-secondary {
+            background: none;
+            border: 1px solid #6c757d;
+            color: #6c757d;
+            padding: 0.375rem 0.75rem; 
+            border-radius: 0.25rem; 
+            text-align: center;
+        }
 
-      .container {
-        padding: 2rem;
-        padding-bottom: 5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-top: 3rem; 
-      }
-
-      .card {
-          background: white;
-          padding: 1.5rem;
-          margin: 1rem 0;
-          border-radius: 8px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          height: 50px;
-      }
-      #classResults {
-          margin-top: 20px;
-      }
-      .result-item {
-          margin: 10px 0;
-      }
-      #toggleFilters {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1rem;
-      }
+        .modal .btn-outline-secondary:hover {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+    }
     </style>
 </head>
 <body>
     <header>
         <img src="https://play-lh.googleusercontent.com/Phfn3jufrHtx-mJYPqMqoO54eAJC29cvSelPnJrRXWCNXLOhepIsBnK0tu_MbnHyfo4">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
     </header>
     <div class="container">
     <h1 style="text-align: center; margin: 20px 0; color: #333;">Personalize o Seu Plano Alimentar</h1>
     <div class="col-md-8">
-    <form id="diet-form" style="display: flex; flex-direction: column; gap: 15px; margin: 20px auto; padding: 20px; background: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); border-radius: 8px; max-width: 400px;">
-        <label for="goal" style="font-weight: bold; color: #555;">Qual o seu objetivo?</label>
-        <select id="goal" required style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">
-            <option value="">Selecione...</option>
-            <option value="Emagrecer">Emagrecer</option>
-            <option value="Ganho de massa">Ganho de massa</option>
-            <option value="Manter forma">Manter a forma</option>
-        </select>
+        <form id="diet-form" style="display: flex; flex-direction: column; gap: 15px; margin: 20px auto; padding: 20px; background: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); border-radius: 8px; max-width: 400px;">
+            <label for="goal" style="font-weight: bold; color: #555;">Qual o seu objetivo?</label>
+            <select id="goal" required style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">
+                <option value="">Selecione...</option>
+                <option value="Emagrecer">Emagrecer</option>
+                <option value="Ganho de massa">Ganho de massa</option>
+                <option value="Manter forma">Manter a forma</option>
+            </select>
 
-        <button type="submit" style="padding: 10px; font-size: 16px;
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.7rem 1rem;
-            background-color: #4a90e2;
-            background: linear-gradient(
-              180deg,
-              rgb(146, 163, 253) 0%,
-              rgb(157, 206, 255) 100%
-            );
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            text-align: center;
-        ">Gerar Plano</button>
-    </form>
-</div>
+            <button type="submit" class="btn btn-primary" style="padding: 10px; font-size: 16px;
+                display: inline-block;
+                margin-top: 1rem;
+                padding: 0.7rem 1rem;
+                background-color: #4a90e2;
+                background: linear-gradient(
+                180deg,
+                rgb(146, 163, 253) 0%,
+                rgb(157, 206, 255) 100%
+                );
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                text-align: center;
+            ">Gerar Plano</button>
+        </form>
+    </div>
 
     <!-- Secção das Refeições -->
     <section>
@@ -153,15 +199,83 @@
             <p id="meal-instructions"></p>
         </div>
     </div>
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between align-items-center">
+              <h5 class="modal-title" id="searchModalLabel">Procurar por aulas</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+              <div class="modal-body">
+                <form id="searchForm" class="d-flex align-items-center gap-2">
+                    <input 
+                        type="text" 
+                        id="searchQuery" 
+                        class="form-control" 
+                        placeholder="Search for a class..." 
+                        oninput="filterClasses()"
+                    >
+                    <button 
+                        type="button" 
+                        id="toggleFilters" 
+                        class="btn btn-outline-secondary"
+                        onclick="toggleFilterContainer()"
+                    >
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                    </button>
+                </form>
+            
+                <div id="filterContainer" style="display: none; margin-top: 10px;">
+                    <label>Filter by Category:</label><br>
+                    <input type="checkbox" id="category1" value="Yoga" onchange="filterClasses()">Yoga<br>
+                    <input type="checkbox" id="category2" value="Crossfit" onchange="filterClasses()">Crossfit<br>
+                    <input type="checkbox" id="category3" value="Kickboxing" onchange="filterClasses()">Kickboxing<br>
+                    <input type="checkbox" id="category4" value="Pilates" onchange="filterClasses()">Pilates<br><br>
+                </div>
+            
+                <div id="classResults" class="mt-3">
+                    <!-- Resultados filtrados -->
+                </div>
+            </div>
+          </div>
+        </div>
     </div>
+    
     <nav class="fixed-bottom">
         <a href="home page.html"><i class="fa fa-home" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i></a>
-        <a href="" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search" aria-hidden="true"></i></a>
-        <a href="#"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
+        <a href="# " data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search" aria-hidden="true"></i></a>
+        <a href="planoalimentar.html"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
         <a href="profile.html"><i class="fa fa-user-o" aria-hidden="true"></i></a>
     </nav>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="search.js"></script>
+    <script>
+        // Função para verificar se o usuário está logado
+        function checkLogin() {
+          const user = JSON.parse(localStorage.getItem("loggedInUser"));
+          
+          if (user) {
+              // Se o usuário estiver logado, exibe a saudação com o nome dele
+              document.getElementById("user-name").textContent = user.name;
+          } else {
+              // Caso contrário, redireciona para a página de login
+              alert("Você precisa estar logado!");
+              window.location.href = "login.html";
+          }
+        }
+  
+        // Função de logout
+        function logout() {
+          localStorage.removeItem("loggedInUser");
+          window.location.href = "login.html"; // Redireciona para a página de login
+        }
+  
+        // Chama a função de verificação ao carregar a página
+        document.addEventListener("DOMContentLoaded", checkLogin);
+    </script>
     <script>
         const form = document.getElementById('diet-form');
         const mealsContainer = document.getElementById('meals');

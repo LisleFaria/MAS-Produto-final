@@ -33,9 +33,18 @@
           width: 40px; /* Set the image size */
           height: auto;
       }
+      header a {
+          color: white; /* Makes the icon or link white */
+          text-decoration: none; /* Removes underline for links */
+      }
+
+      header a:hover {
+          color: #f0f0f0; /* Subtle hover effect for better feedback */
+      }
 
       header i {
           font-size: 1.5rem;
+          color: inherit;
       }
 
       nav {
@@ -115,6 +124,7 @@
         gap: 0.5rem;
         font-size: 1rem;
       }
+      
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -129,7 +139,7 @@
       <div id="user-greeting" class="mb-3">
           <h1>Olá, <span id="user-name"></span>!</h1>
       </div>
-    
+    </div>
     <div class="container">
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
@@ -223,9 +233,10 @@
         <a href="home page.html"><i class="fa fa-home active" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i></a>
         <a href="" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search" aria-hidden="true"></i></a>
-        <a href="#"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
+        <a href="planoalimentar.html"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
         <a href="profile.html"><i class="fa fa-user-o" aria-hidden="true"></i></a>
     </nav>
+    
     <script>
       // Função para verificar se o usuário está logado
       function checkLogin() {
@@ -255,6 +266,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
-    <script src="home page.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>
