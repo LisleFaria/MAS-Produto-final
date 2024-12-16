@@ -1,29 +1,55 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Cor-Sano</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Inscricao.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="Cor-Sano" height="40"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-sm fixed-top bg-body-tertiary border-bottom">
+        <div class="container-xl">
+            <a href="index.html" class="navbar-brand p-0"><img src="Imagens/Imagem0.png" height="35" /></a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="Index.html">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Aulas.html">Aulas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="About.html">Sobre Nós</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Contato.html">Contato</a></li>
+            <div class="collapse navbar-collapse d-md-inline-flex justify-content-between">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li><a class="nav-link" href="Index.html"> Inicio</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Produtos</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item " href="Aulas.html">Aulas</a></li>
+                            <li><a class="dropdown-item " href="About.html">Sobre Nós</a></li>
+                            <li><a class="dropdown-item " href="#">...</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item " href="#">...</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </li>
+
+                    <li><a class="nav-link" href="Contato.html"><i class="fa fa-id-badge" aria-hidden="true"></i> Contato</a></li>
+                </ul>
+                <ul class="navbar-nav justify-content-end" id="bd-theme">
+                    <li><a class="nav-link" href="help.html"><i class="fa fa-question-circle-o text-danger" aria-hidden="true"></i> Help</a></li>
+                    <li class="navbar-text hstack"><div class="vr"></div></li>
+                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="light" aria-pressed="false"><i class="theme-icon fa fa-sun-o" title="Modo claro"></i></div></li>
+
+                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="dark" aria-pressed="false"><i class="theme-icon fa fa-moon-o" title="Modo escuro"></i></div></li>
                 </ul>
             </div>
         </div>
@@ -33,20 +59,64 @@
     <!-- Aulas Section -->
     <section id="aulas" class="py-5">
         <div class="container">
-            <h2 class="text-center">Aulas de CrossFit</h2>
-            <p>As aulas de CrossFit na Cor-Sano são projetadas para atender todos os níveis de condicionamento físico.</p>
-            <!-- Card for each class -->
-            <div class="row">
+            <h2 class="text-center">Nossas Aulas</h2>
+            <p class="text-center mb-5">Escolha entre diversas modalidades oferecidas para atender suas necessidades.</p>
+            <div class="row row-gap-4">
+                <!-- Aula 1: CrossFit -->
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="assets/img/crossfit1.jpg" class="card-img-top" alt="Aula 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Aula de CrossFit</h5>
-                            <p class="card-text">Aprimore seu condicionamento com os melhores treinadores!</p>
+                        <img src="Imagens/Imagem2.jpeg" class="card-img-top" alt="CrossFit">
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold">CrossFit</h5>
+                            <p class="card-text">Intensifique seu treino com as melhores aulas de CrossFit.</p>
+                            <a href="Incricaoaula.html" class="btn btn-primary btn shadow">Inscreva-se</a>
                         </div>
                     </div>
                 </div>
-                <!-- Add more classes here -->
+                <!-- Aula 2: Yoga -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://th.bing.com/th/id/OIP.Sc8M0yNTTsCV44M0MpFq5wHaE7?w=1280&h=853&rs=1&pid=ImgDetMaing" class="card-img-top" alt="Yoga">
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold">Yoga</h5>
+                            <p class="card-text">Relaxe e fortaleça corpo e mente com nossas aulas de Yoga.</p>
+                            <a href="Incricaoaula.html" class="btn btn-primary btn shadow">Inscreva-se</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Aula 3: Zumba -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://th.bing.com/th/id/OIP.RoKM69aYPIVg0K1CAZaJ4gHaFw?w=1280&h=994&rs=1&pid=ImgDetMain" class="card-img-top" alt="Zumba">
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold">Zumba</h5>
+                            <p class="card-text">Divirta-se e queime calorias com aulas de Zumba dinâmicas.</p>
+                            <a href="Incricaoaula.html" class="btn btn-primary btn shadow">Inscreva-se</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Aula 4: Kickboxing -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://th.bing.com/th/id/OIP.-qzOSOsUWIBHjebm9IjaLwHaFj?w=1400&h=1050&rs=1&pid=ImgDetMaing" class="card-img-top" alt="Kickboxing">
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold">Kickboxing</h5>
+                            <p class="card-text">Melhore sua resistência com treinos intensivos de Kickboxing.</p>
+                            <a href="Incricaoaula.html" class="btn btn-primary btn shadow">Inscreva-se</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Aula 5: Pilates -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://th.bing.com/th/id/OIP.1PSX9Ghdw0NUbh38Hsg19AHaE7?w=1698&h=1131&rs=1&pid=ImgDetMain" class="card-img-top" alt="Pilates">
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold">Pilates</h5>
+                            <p class="card-text">Fortaleça o core e melhore sua postura com Pilates.</p>
+                            <a href="Incricaoaula.html" class="btn btn-primary btn shadow">Inscreva-se</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -58,8 +128,9 @@
         <p>&copy; 2024 Cor-Sano. Todos os direitos reservados.</p>
     </footer>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
-
+    <script src="theme.js"></script>
 </body>
 </html>
