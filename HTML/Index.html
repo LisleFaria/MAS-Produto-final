@@ -1,47 +1,138 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Cor-Sano</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <!-- Bootstrap CSS -->
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome-->
+    <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Estilos personalizados para a timeline -->
+    <style>
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-left: 4px solid #007bff;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+            .timeline-item img {
+                border-radius: 5px;
+            }
+    </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="Cor-Sano" height="40"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-sm fixed-top bg-body-tertiary border-bottom">
+        <div class="container-xl">
+            <a href="index.html" class="navbar-brand p-0"><img src="Imagens/Imagem0.png" height="35" /></a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="Index.html">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Aulas.html">Aulas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="About.html">Sobre Nós</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Contato.html">Contato</a></li>
+            <div class="collapse navbar-collapse d-md-inline-flex justify-content-between">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li><a class="nav-link" href="Index.html"> Inicio</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Produtos</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item " href="Aulas.html">Aulas</a></li>
+                            <li><a class="dropdown-item " href="About.html">Sobre Nós</a></li>
+                            <li><a class="dropdown-item " href="#">...</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item " href="#">...</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </li>
+
+                    <li><a class="nav-link" href="Contato.html"><i class="fa fa-id-badge" aria-hidden="true"></i> Contato</a></li>
+                </ul>
+                <ul class="navbar-nav justify-content-end" id="bd-theme">
+                    <li><a class="nav-link" href="help.html"><i class="fa fa-question-circle-o text-danger" aria-hidden="true"></i> Help</a></li>
+                    <li class="navbar-text hstack"><div class="vr"></div></li>
+                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="light" aria-pressed="false"><i class="theme-icon fa fa-sun-o" title="Modo claro"></i></div></li>
+
+                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="dark" aria-pressed="false"><i class="theme-icon fa fa-moon-o" title="Modo escuro"></i></div></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!--Carousel-->
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-block w-100" style="background: url('Imagens/Imagem1.jpeg') center center; height: 600px; background-size: cover;" alt="First slide"></div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100" style="background: url('Imagens/Imagem2.jpeg') center center; height: 600px; background-size: cover;" alt="Second slide"></div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100" style="background: url('Imagens/Imagem3.jpeg') center center; height: 600px; background-size: cover;" alt="Third slide"></div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100" style="background: url('Imagens/Imagem4.jpeg') center center; height: 600px; background-size: cover;" alt="Four slide"></div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
 
 
     <!-- Hero Section -->
-    <section id="home" class="hero text-center text-white d-flex justify-content-center align-items-center">
-        <div class="container">
-            <h1 class="display-4">Bem-vindo à Cor-Sano</h1>
-            <p class="lead">Transformando sua saúde com tecnologia.</p><p class="lead">Soluções inovadoras para o monitoramento da saúde.</p>
-            <a href="#products" class="btn btn-primary btn-lg">Saiba mais</a>
-            <a href="Aulas.html" class="btn btn-primary btn-lg">Veja nossas aulas</a>
+    <section id="home" class="hero text-center text-white d-flex justify-content-center align-items-center" style="position: relative; height: 100vh; background: linear-gradient(135deg, #3b82f6, #9333ea); overflow: hidden;">
+        <!-- Efeito de Partículas Mágicas -->
+        <div id="particles-js"></div>
+
+        <div class="container position-relative text-center">
+            <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown" style="text-align: center;">
+                <span style="color: #ffdd57; text-shadow: 0 0 15px #ffdd57;">Bem-vindo à Cor-Sano</span>
+            </h1>
+            <p class="lead fw-light mb-4 animate__animated animate__fadeInUp" style="text-align: center;">
+                Transformando sua saúde com <span class="text-warning fw-bold">tecnologia</span> e <span class="text-success fw-bold">inovação</span>.
+            </p>
+            <p class="lead fw-light mb-5 animate__animated animate__fadeInUp delay-1s" style="text-align: center;">
+                Soluções <span class="text-info fw-bold">inteligentes</span> para o monitoramento e cuidado da sua saúde.
+            </p>
+            <!-- Botões -->
+            <a href="About.html" class="btn btn-lg btn-warning text-dark fw-bold shadow-lg animate__animated animate__zoomIn delay-1s me-3" style="text-align: center;">
+                <i class="fas fa-info-circle"></i> Saiba mais
+            </a>
+            <a href="Aulas.html" class="btn btn-lg btn-primary text-white fw-bold shadow-lg animate__animated animate__zoomIn delay-2s" style="text-align: center;">
+                <i class="fas fa-dumbbell"></i> Veja nossas aulas
+            </a>
         </div>
+
+        <!-- Efeito Brilhante no Fundo -->
+        <div class="sparkles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://cdn.wallpapersafari.com/19/23/z7MdVL.jpg') repeat; opacity: 0.3; pointer-events: none;"></div>
     </section>
-
-
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-4">
@@ -50,6 +141,55 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+    <script src="theme.js"></script>
 
+    <!-- Scripts Necessários -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#ffffff" },
+                "shape": {
+                    "type": "circle",
+                    "stroke": { "width": 0, "color": "#000000" },
+                    "polygon": { "nb_sides": 5 },
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+
+    <!-- Animações CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </body>
 </html>
