@@ -150,7 +150,7 @@
               <div class="card-body">
                 <h5 class="card-title">Histórico de aulas</h5>
                 <p class="card-text">Veja o quê foi feito nas suas últimas aulas e deixe uma avaliação.</p>
-                <a href="#" class="button">Checar</a>
+                <a href="historico.html" class="button">Checar</a>
               </div>
             </div>
           </div>
@@ -256,23 +256,60 @@
     <script>
       // Função para verificar se o usuário está logado
       function checkLogin() {
-        const user = JSON.parse(localStorage.getItem("loggedInUser"));
-        
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+        const allUsers = JSON.parse(localStorage.getItem("users"));
+        // Se o usuário estiver logado, exibe a saudação com o nome dele
+        document.getElementById("user-name").textContent = loggedInUser.name;
+        const user = allUsers.find(u => u.email === loggedInUser.email);
+
         if (user) {
-            // Se o usuário estiver logado, exibe a saudação com o nome dele
-            document.getElementById("user-name").textContent = user.name;
+            // Atualiza o 'loggedInUser' com as mesmas características do usuário vinculado
+            // Aqui você pode atualizar todos os campos necessários
+            Object.assign(loggedInUser, user);
+            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
         } else {
-            // Caso contrário, redireciona para a página de login
-            alert("Você precisa estar logado!");
-            window.location.href = "login.html";
+            console.error("Usuário vinculado não encontrado.");
         }
+    } else {
+        // Caso contrário, redireciona para a página de login
+        alert("Você precisa estar logado!");
+        window.location.href = "login.html";
+    }
+  }
+
+  // Verifica se o usuário está logado ao carregar a página
+  document.addEventListener('DOMContentLoaded', checkLogin);
+
+  // Função de logout
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "login.html"; // Redireciona para a página de login
+  }
+      // Função para verificar o papel do usuário e ajustar o conteúdo
+      function adjustContentForRole() {
+          const user = JSON.parse(localStorage.getItem("loggedInUser"));
+          
+          if (user && user.isInstructor === true) {
+              // Ocultar outras seções
+              const allCards = document.querySelectorAll(".card");
+              
+              // Itera sobre todos os cards e oculta os que não são "Histórico de aulas"
+              allCards.forEach(card => {
+                  const title = card.querySelector(".card-title").textContent.trim();
+                  if (title !== "Histórico de aulas") {
+                      card.style.display = "none"; // Esconde os cards que não correspondem
+                  }
+              });
+          }
       }
 
-      // Função de logout
-      function logout() {
-        localStorage.removeItem("loggedInUser");
-        window.location.href = "login.html"; // Redireciona para a página de login
-      }
+// Chama as funções ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+    checkLogin(); // Garante que o usuário esteja logado
+    adjustContentForRole(); // Ajusta o conteúdo com base no papel
+});
+
 
       // Chama a função de verificação ao carregar a página
       document.addEventListener("DOMContentLoaded", checkLogin);
