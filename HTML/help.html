@@ -5,129 +5,263 @@
     <title>Help Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="Inscricao.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        body {
+            font-family: "Poppins", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+  
+        header {
+            background-color: #4a90e2;
+            background: linear-gradient(
+              180deg,
+              rgb(146, 163, 253) 0%,
+              rgb(157, 206, 255) 100%
+            );
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between; /* Align content to the right */
+            align-items: center; /* Vertically center the content */
+            font-size: 1.5rem;
+        }
+  
+        header img {
+            width: 40px; /* Set the image size */
+            height: auto;
+        }
+        header a {
+            color: white; /* Makes the icon or link white */
+            text-decoration: none; /* Removes underline for links */
+        }
+  
+        header a:hover {
+            color: #f0f0f0; /* Subtle hover effect for better feedback */
+        }
+  
+        header i {
+            font-size: 1.5rem;
+            color: inherit;
+        }
+  
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #ffffff;
+            background: linear-gradient(
+              180deg,
+              rgb(146, 163, 253) 0%,
+              rgb(157, 206, 255) 100%
+            );
+            padding: 0.5rem 0;
+            border-top: 1px solid #ccc;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+        }
+  
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+  
+        nav a i {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+  
+        .button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.7rem 1rem;
+            background-color: #4a90e2;
+            background: linear-gradient(
+              180deg,
+              rgb(146, 163, 253) 0%,
+              rgb(157, 206, 255) 100%
+            );
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+        }
+        #classResults {
+            margin-top: 20px;
+        }
+        .result-item {
+            margin: 10px 0;
+        }
+        #toggleFilters {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 1rem;
+        }
+        
+      </style>
 </head>
 <body>
-    <<!-- Navbar -->
-    <nav class="navbar navbar-expand-sm fixed-top bg-body-tertiary border-bottom">
-        <div class="container-xl">
-            <a href="index.html" class="navbar-brand p-0"><img src="Imagens/Imagem0.png" height="35" /></a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-md-inline-flex justify-content-between">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li><a class="nav-link" href="Index.html"> Inicio</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Produtos</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item " href="Aulas.html">Aulas</a></li>
-                            <li><a class="dropdown-item " href="About.html">Sobre Nós</a></li>
-                            <li><a class="dropdown-item " href="#">...</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item " href="#">...</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                        </ul>
-                    </li>
-
-                    <li><a class="nav-link" href="Contato.html"><i class="fa fa-id-badge" aria-hidden="true"></i> Contato</a></li>
-                </ul>
-                <ul class="navbar-nav justify-content-end" id="bd-theme">
-                    <li><a class="nav-link" href="help.html"><i class="fa fa-question-circle-o text-danger" aria-hidden="true"></i> Help</a></li>
-                    <li class="navbar-text hstack"><div class="vr"></div></li>
-                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="light" aria-pressed="false"><i class="theme-icon fa fa-sun-o" title="Modo claro"></i></div></li>
-
-                    <li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="dark" aria-pressed="false"><i class="theme-icon fa fa-moon-o" title="Modo escuro"></i></div></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <header>
+        <img src="https://play-lh.googleusercontent.com/Phfn3jufrHtx-mJYPqMqoO54eAJC29cvSelPnJrRXWCNXLOhepIsBnK0tu_MbnHyfo4">
+        <a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    </header>
 
     <!-- Help Section -->
-    <section class="py-5 mt-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Página de Ajuda</h2>
-            <p class="text-center">Aqui você encontra respostas para as perguntas mais comuns e também pode entrar em contato conosco.</p>
 
-            <!-- FAQ Section -->
-            <div class="accordion" id="faqAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq1-heading">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
-                            Como faço para me inscrever em uma aula?
-                        </button>
-                    </h2>
-                    <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Para se inscrever em uma aula, acesse a página <strong>Aulas</strong>, escolha a modalidade desejada e clique em "Inscreva-se". Você será redirecionado para a página de inscrição.
-                        </div>
+    <div class="container">
+        <h2 class="text-center mb-4">Página de Ajuda</h2>
+        <p class="text-center">Aqui você encontra respostas para as perguntas mais comuns e também pode entrar em contato conosco.</p>
+
+        <!-- FAQ Section -->
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1-heading">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                        Como faço para me inscrever em uma aula?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Para se inscrever em uma aula, acesse a página <strong>Aulas</strong>, escolha a modalidade desejada e clique em "Inscreva-se". Você será redirecionado para a página de inscrição.
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq2-heading">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
-                            Quais modalidades de aulas vocês oferecem?
-                        </button>
-                    </h2>
-                    <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Oferecemos diversas modalidades, incluindo: CrossFit, Yoga, Zumba, Kickboxing, Pilates e muito mais. Confira a página <strong>Aulas</strong> para saber mais.
-                        </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq2-heading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                        Quais modalidades de aulas vocês oferecem?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Oferecemos diversas modalidades, incluindo: CrossFit, Yoga, Zumba, Kickboxing, Pilates e muito mais. Confira a página <strong>Aulas</strong> para saber mais.
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq3-heading">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
-                            Como entro em contato com a equipe?
-                        </button>
-                    </h2>
-                    <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Você pode entrar em contato através do nosso <a href="Contato.html">formulário de contato</a> ou nos enviar um e-mail diretamente para <strong>suporte@cor-sano.com</strong>.
-                        </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3-heading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                        Como entro em contato com a equipe?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Você pode entrar em contato através do nosso <a href="Contato.html">formulário de contato</a> ou nos enviar um e-mail diretamente para <strong>suporte@cor-sano.com</strong>.
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     <!-- Contact Form -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <h3 class="text-center mb-4">Fale Conosco</h3>
-            <form>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
-                    </div>
+    <div class="container">
+        <h3 class="text-center mb-4">Fale Conosco</h3>
+        <form>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" required>
                 </div>
-                <div class="mb-3">
-                    <label for="mensagem" class="form-label">Mensagem</label>
-                    <textarea class="form-control" id="mensagem" rows="5" placeholder="Como podemos ajudar?" required></textarea>
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+            <div class="mb-3">
+                <label for="mensagem" class="form-label">Mensagem</label>
+                <textarea class="form-control" id="mensagem" rows="5" placeholder="Como podemos ajudar?" required></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+    <br><br><br><br>
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between align-items-center">
+              <h5 class="modal-title" id="searchModalLabel">Procurar por aulas</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+              <div class="modal-body">
+                <form id="searchForm" class="d-flex align-items-center gap-2">
+                    <input 
+                        type="text" 
+                        id="searchQuery" 
+                        class="form-control" 
+                        placeholder="Search for a class..." 
+                        oninput="filterClasses()"
+                    >
+                    <button 
+                        type="button" 
+                        id="toggleFilters" 
+                        class="btn btn-outline-secondary"
+                        onclick="toggleFilterContainer()"
+                    >
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                    </button>
+                </form>
+            
+                <div id="filterContainer" style="display: none; margin-top: 10px;">
+                    <label>Filter by Category:</label><br>
+    
+                    <label>
+                      <input type="checkbox" id="category1" value="Yoga" onchange="filterClasses()">
+                      Yoga
+                    </label><br>
+                    
+                    <label>
+                      <input type="checkbox" id="category2" value="Crossfit" onchange="filterClasses()">
+                      Crossfit
+                    </label><br>
+                    
+                    <label>
+                      <input type="checkbox" id="category3" value="Kickboxing" onchange="filterClasses()">
+                      Kickboxing
+                    </label><br>
+                    
+                    <label>
+                      <input type="checkbox" id="category4" value="Pilates" onchange="filterClasses()">
+                      Pilates
+                    </label><br>                
                 </div>
-            </form>
+            
+                <div id="classResults" class="mt-3">
+                    <!-- Resultados filtrados -->
+                </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4">
-        <p>&copy; 2024 Cor-Sano. Todos os direitos reservados.</p>
-    </footer>
+    <nav class="fixed-bottom">
+        <a href="home page.html"><i class="fa fa-home active" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i></a>
+        <a href="" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search" aria-hidden="true"></i></a>
+        <a href="planoalimentar.html"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
+        <a href="profile.html"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+    </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

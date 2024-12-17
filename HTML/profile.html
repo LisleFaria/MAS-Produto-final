@@ -11,6 +11,7 @@
         body {
             font-family: "Poppins", Arial, sans-serif;
             background-color: #f9f9f9;
+            padding: 0;
         }
 
         header {
@@ -104,6 +105,16 @@
         border: none;
     }
 
+    .btn{
+        background-color: #4a90e2;
+        background: linear-gradient(
+            180deg,
+            rgb(146, 163, 253) 0%,
+            rgb(157, 206, 255) 100%
+        );
+        color: white;
+    }
+
     .profileForm .btn-primary:focus {
         box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
     }
@@ -122,8 +133,6 @@
         background-color: #6c757d;
         border-color: #6c757d;
     }
-
-    
     </style>
 </head>
 <body>
@@ -187,10 +196,26 @@
             
                 <div id="filterContainer" style="display: none; margin-top: 10px;">
                     <label>Filter by Category:</label><br>
-                    <input type="checkbox" id="category1" value="Yoga" onchange="filterClasses()">Yoga<br>
-                    <input type="checkbox" id="category2" value="Crossfit" onchange="filterClasses()">Crossfit<br>
-                    <input type="checkbox" id="category3" value="Kickboxing" onchange="filterClasses()">Kickboxing<br>
-                    <input type="checkbox" id="category4" value="Pilates" onchange="filterClasses()">Pilates<br><br>
+    
+                    <label>
+                      <input type="checkbox" id="category1" value="Yoga" onchange="filterClasses()">
+                      Yoga
+                    </label><br>
+                    
+                    <label>
+                      <input type="checkbox" id="category2" value="Crossfit" onchange="filterClasses()">
+                      Crossfit
+                    </label><br>
+                    
+                    <label>
+                      <input type="checkbox" id="category3" value="Kickboxing" onchange="filterClasses()">
+                      Kickboxing
+                    </label><br>
+                    
+                    <label>
+                      <input type="checkbox" id="category4" value="Pilates" onchange="filterClasses()">
+                      Pilates
+                    </label><br>                
                 </div>
             
                 <div id="classResults" class="mt-3">
@@ -200,6 +225,11 @@
           </div>
         </div>
       </div>
+
+    <button class="btn" onclick="window.location.href='help.html';">
+    <span >Get Help</span>
+    </button>
+
 
 
     <nav class="fixed-bottom">
