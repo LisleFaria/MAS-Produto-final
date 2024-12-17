@@ -1,12 +1,12 @@
 const fakeClasses = [
-    { name: "Yoga e Bem-Estar Integral", category: "Yoga", link: "../HTML/aula yoga1.html" },
-    { name: "Dinâmicas de Yoga e Consciência corporal", category: "Yoga", link: "../HTML/aula yoga2.html" },
-    { name: "Força e Movimento Funcional", category: "Crossfit", link: "../HTML/aula crossfit1.html" },
-    { name: "Condicionamento  de Alta Performance", category: "Crossfit", link: "../HTML/aula crossfit2.html" },
-    { name: "Kickboxing e Preparação Física", category: "Kickboxing", link: "../HTML/aula kickboxing1.html" },
-    { name: "Técnicas de Combate e Força", category: "Kickboxing", link: "../HTML/aula kickboxing2.html" },
-    { name: "Força, Flexibilidade e Postura", category: "Pilates", link: "../HTML/aula pilates1.html" },
-    { name: "Pilates e Equilíbrio Corporal", category: "Pilates", link: "../HTML/aula pilates2.html" }
+    { name: "Yoga e Bem-Estar Integral", category: "Yoga", link: "aula yoga1.html" },
+    { name: "Dinâmicas de Yoga e Consciência corporal", category: "Yoga", link: "aula yoga2.html" },
+    { name: "Força e Movimento Funcional", category: "Crossfit", link: "aula crossfit1.html" },
+    { name: "Condicionamento  de Alta Performance", category: "Crossfit", link: "aula crossfit2.html" },
+    { name: "Kickboxing e Preparação Física", category: "Kickboxing", link: "aula kickboxing1.html" },
+    { name: "Técnicas de Combate e Força", category: "Kickboxing", link: "aula kickboxing2.html" },
+    { name: "Força, Flexibilidade e Postura", category: "Pilates", link: "aula pilates1.html" },
+    { name: "Pilates e Equilíbrio Corporal", category: "Pilates", link: "aula pilates2.html" }
 ];
 
 function filterClasses() {
