@@ -1,13 +1,12 @@
-// Aulas
 const fakeClasses = [
-    { name: "Yoga e Bem-Estar Integral", category: "Yoga" },
-    { name: "Dinâmicas de Yoga e Consciência corporal", category: "Yoga" },
-    { name: "Força e Movimento Funcional", category: "Crossfit" },
-    { name: "Condicionamento  de Alta Performance", category: "Crossfit" },
-    { name: "Kickboxing e Preparação Física", category: "Kickboxing" },
-    { name: "Técnicas de Combate e Força", category: "Kickboxing" },
-    { name: "Força, Flexibilidade e Postura", category: "Pilates" },
-    { name: "Pilates e Equilíbrio Corporal", category: "Pilates" }
+    { name: "Yoga e Bem-Estar Integral", category: "Yoga", link: "../HTML/aula yoga1.html" },
+    { name: "Dinâmicas de Yoga e Consciência corporal", category: "Yoga", link: "../HTML/aula yoga2.html" },
+    { name: "Força e Movimento Funcional", category: "Crossfit", link: "../HTML/aula crossfit1.html" },
+    { name: "Condicionamento  de Alta Performance", category: "Crossfit", link: "../HTML/aula crossfit2.html" },
+    { name: "Kickboxing e Preparação Física", category: "Kickboxing", link: "../HTML/aula kickboxing1.html" },
+    { name: "Técnicas de Combate e Força", category: "Kickboxing", link: "../HTML/aula kickboxing2.html" },
+    { name: "Força, Flexibilidade e Postura", category: "Pilates", link: "../HTML/aula pilates1.html" },
+    { name: "Pilates e Equilíbrio Corporal", category: "Pilates", link: "../HTML/aula pilates2.html" }
 ];
 
 function filterClasses() {
@@ -29,7 +28,7 @@ function filterClasses() {
     // Exibe os resultados ou diz que não tem aulas
     if (filteredClasses.length > 0) {
         classResults.innerHTML = filteredClasses.map(cls => 
-            `<div class="result-item">${cls.name} (${cls.category})</div>`
+            `<div class="result-item"><a href="${cls.link}">${cls.name} (${cls.category})</a></div>`
         ).join('');
         classResults.style.display = 'block'; // Mostrar resultados
     } else {
@@ -42,6 +41,7 @@ function filterClasses() {
         classResults.style.display = 'none';
     }
 }
+
 document.getElementById('toggleFilters').addEventListener('click', function () {
   const filterContainer = document.getElementById('filterContainer');
   if (filterContainer.style.display === 'none' || filterContainer.style.display === '') {
