@@ -1,12 +1,13 @@
+// Aulas
 const fakeClasses = [
-    { id: 1, name: "Yoga e Bem-Estar Integral", category: "Yoga", link: "aula yoga1.html" },
-    { id: 2, name: "Dinâmicas de Yoga e Consciência corporal", category: "Yoga", link: "aula yoga2.html" },
-    { id: 3, name: "Força e Movimento Funcional", category: "Crossfit", link: "aula crossfit1.html" },
-    { id: 4, name: "Condicionamento  de Alta Performance", category: "Crossfit", link: "aula crossfit2.html" },
-    { id: 5, name: "Kickboxing e Preparação Física", category: "Kickboxing", link: "aula kickboxing1.html" },
-    { id: 6, name: "Técnicas de Combate e Força", category: "Kickboxing", link: "aula kickboxing2.html" },
-    { id: 7, name: "Força, Flexibilidade e Postura", category: "Pilates", link: "aula pilates1.html" },
-    { id: 8, name: "Pilates e Equilíbrio Corporal", category: "Pilates", link: "aula pilates2.html" }
+    { id: 1, name: "Yoga e Bem-Estar Integral", category: "Yoga" },
+    { id: 2, name: "Dinâmicas de Yoga e Consciência corporal", category: "Yoga" },
+    { id: 3, name: "Força e Movimento Funcional", category: "Crossfit" },
+    { id: 4, name: "Condicionamento de Alta Performance", category: "Crossfit" },
+    { id: 5, name: "Kickboxing e Preparação Física", category: "Kickboxing" },
+    { id: 6, name: "Técnicas de Combate e Força", category: "Kickboxing" },
+    { id: 7, name: "Força, Flexibilidade e Postura", category: "Pilates" },
+    { id: 8, name: "Pilates e Equilíbrio Corporal", category: "Pilates" }
 ];
 
 function filterClasses() {
@@ -28,7 +29,9 @@ function filterClasses() {
     // Exibe os resultados ou diz que não tem aulas
     if (filteredClasses.length > 0) {
         classResults.innerHTML = filteredClasses.map(cls => 
-            `<div class="result-item" data-id="${cls.id}"><a href="${cls.link}">${cls.name} (${cls.category})</a></div>`
+            `<div class="result-item" data-id="${cls.id}" style="cursor: pointer;">
+                ${cls.name} (${cls.category})
+            </div>`
         ).join('');
         classResults.style.display = 'block';
     } else {
@@ -36,27 +39,35 @@ function filterClasses() {
         classResults.style.display = 'block';
     }
 
-    // Agora vamos adicionar o evento de clique nas aulas
+    // Se não tiver filtros ativos e a pesquisa vazia, esconde os resultados
     document.querySelectorAll('.result-item').forEach(item => {
         item.addEventListener('click', function () {
             const classId = parseInt(this.getAttribute('data-id'));
             const selectedClass = fakeClasses.find(cls => cls.id === classId);
             if (selectedClass) {
-                // Salva a aula selecionada no localStorage
                 localStorage.setItem('aulaSelecionada', JSON.stringify(selectedClass));
-                console.log('Aula selecionada e salva no localStorage:', selectedClass);
             }
         });
     });
 
-    // Se não tiver filtros ativos e a pesquisa vazia, exibe todas as aulas
     if (selectedCategories.length === 0 && searchQuery === '') {
         displayAllClasses();
     }
 }
 
+function displayAllClasses() {
+    const classResults = document.getElementById('classResults');
+    classResults.innerHTML = fakeClasses.map(cls =>
+        `<div class="result-item" data-id="${cls.id}" style="cursor: pointer;">
+            ${cls.name} (${cls.category})
+        </div>`
+    ).join('');
+    classResults.style.display = 'block';
+}
+
+// Alternar visibilidade do filtro
 document.getElementById('toggleFilters').addEventListener('click', function () {
-    const filterContainer = document.getElementById('filterContainer');
+        const filterContainer = document.getElementById('filterContainer');
     if (filterContainer.style.display === 'none' || filterContainer.style.display === '') {
         filterContainer.style.display = 'block';
     } else {
