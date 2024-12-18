@@ -1,0 +1,59 @@
+﻿/* Estilo Global */
+body {
+    background: linear-gradient(135deg, #f5a7f2, #9e81f1);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container do Card */
+.form-card {
+    background: linear-gradient(135deg, #d0a9f5, #eac0f8);
+    border: none;
+    border-radius: 25px;
+    padding: 30px;
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Título e Botão Voltar */
+.back-button {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+/* Formulário */
+.form-input {
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn {
+    background: linear-gradient(to right, #6f9dfb, #78d5f5);
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+    .submit-btn:hover {
+        background: linear-gradient(to right, #78d5f5, #6f9dfb);
+    }
+
+/* Ilustração */
+.illustration img {
+    position: absolute;
+    bottom: -30px;
+    right: -10px;
+    max-width: 120px;
+}
