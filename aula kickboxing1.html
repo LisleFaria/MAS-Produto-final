@@ -124,6 +124,25 @@
         gap: 0.5rem;
         font-size: 1rem;
       }
+      .card img {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            nav a i {
+                font-size: 1.2rem;
+            }
+        }
       
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
@@ -136,7 +155,7 @@
     </header>
     
     <div class="container">
-        <div class="card">
+        <div class="card" style="min-width: auto;">
             <img src="https://i.pinimg.com/736x/15/92/e8/1592e8ff570eda86bbb0d09189035406.jpg" alt="Imagem da aula Força e Movimento Funcional" height="800">
             <h2>Kickboxing e Preparação Física</h2>
             <p>A aula Kickboxing e Preparação Física combina técnicas intensas de kickboxing com exercícios físicos voltados para o condicionamento e resistência.</p> 
@@ -221,7 +240,6 @@
         
         if (user) {
             // Se o usuário estiver logado, exibe a saudação com o nome dele
-            document.getElementById("user-name").textContent = user.name;
         } else {
             // Caso contrário, redireciona para a página de login
             alert("Você precisa estar logado!");
