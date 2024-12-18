@@ -30,15 +30,26 @@ function filterClasses() {
         classResults.innerHTML = filteredClasses.map(cls => 
             `<div class="result-item"><a href="${cls.link}">${cls.name} (${cls.category})</a></div>`
         ).join('');
-        classResults.style.display = 'block'; // Mostrar resultados
+        classResults.style.display = 'block';
     } else {
-        classResults.innerHTML = '<p>No classes found.</p>';
-        classResults.style.display = 'block'; // Mostrar "sem resultados"
+        classResults.innerHTML = '<p>Não foram encontradas aulas.</p>';
+        classResults.style.display = 'block';
     }
 
     // Se não tiver filtros ativos e a pesquisa vazia, esconde os resultados
+    document.querySelectorAll('.result-item').forEach(item => {
+        item.addEventListener('click', function () {
+            const classId = parseInt(this.getAttribute('data-id'));
+            const selectedClass = fakeClasses.find(cls => cls.id === classId);
+            if (selectedClass) {
+                localStorage.setItem('aulaSelecionada', JSON.stringify(selectedClass));
+                window.location.href = 'inscricaoaula.html';
+            }
+        });
+    });
+
     if (selectedCategories.length === 0 && searchQuery === '') {
-        classResults.style.display = 'none';
+        displayAllClasses();
     }
 }
 

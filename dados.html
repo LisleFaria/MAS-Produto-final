@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Fitness - Cor Sano</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 shadow-lg" style="width: 100%; max-width: 500px;">
+            <h3 class="text-center mb-4">Complete seus Dados</h3>
+
+            <!-- Formulário para Usuário Normal -->
+            <div id="userForm" style="display: none;">
+                <form onsubmit="saveProfileData(); return false;">
+                    <label for="weight">Peso (kg):</label>
+                    <input type="number" id="weight" class="form-control" required><br>
+            
+                    <label for="height">Altura (cm):</label>
+                    <input type="number" id="height" class="form-control" required><br>
+            
+                    <label for="age">Idade:</label>
+                    <input type="number" id="age" class="form-control" required><br>
+            
+                    <label for="goal">Objetivo Fitness</label>
+                    <select id="goal" class="form-control">
+                        <option value="Perda de Peso">Perda de Peso</option>
+                        <option value="Ganho de Massa">Ganho de Massa</option>
+                        <option value="Manter Forma">Manter Forma</option>
+                    </select><br>
+
+                    <button type="submit" class="btn btn-primary w-100">Salvar</button>
+                </form>
+            </div>
+
+            <!-- Formulário para Instrutores -->
+            <div id="instructorForm" style="display: none;">
+                <form onsubmit="saveInstructorData(); return false;">
+                    <h5>Quais aulas você dá?</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="yoga" value="Yoga">
+                        <label class="form-check-label" for="yoga">Yoga</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="pilates" value="Pilates">
+                        <label class="form-check-label" for="pilates">Pilates</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="crossfit" value="Crossfit">
+                        <label class="form-check-label" for="crossfit">Crossfit</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="kickboxing" value="Kickboxing">
+                        <label class="form-check-label" for="kickboxing">Kickboxing</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if (!user) {
+            alert("Você precisa estar logado!");
+            window.location.href = "login.html";
+            return;
+        }
+
+        // Verifica se o usuário é um instrutor
+        if (user.isInstructor === true) {
+            // Exibe apenas o formulário de instrutor
+            document.getElementById("instructorForm").style.display = "block";
+            document.getElementById("userForm").style.display = "none";
+        } else {
+            // Exibe o formulário padrão para usuários normais
+            document.getElementById("userForm").style.display = "block";
+            document.getElementById("instructorForm").style.display = "none";
+        }
+    });
+        // Salva os dados do usuário padrão
+        function saveProfileData() {
+            const weight = document.getElementById("weight").value;
+            const height = document.getElementById("height").value;
+            const age = document.getElementById("age").value;
+            const goal = document.getElementById("goal").value;
+
+            const imc = (weight / ((height / 100) * (height / 100))).toFixed(2);
+
+            let user = JSON.parse(localStorage.getItem("loggedInUser"));
+            user.weight = weight;
+            user.height = height;
+            user.age = age;
+            user.goal = goal;
+            user.imc = imc;
+
+            updateUserData(user);
+            alert(`Dados salvos com sucesso! Seu IMC é ${imc}.`);
+            window.location.href = "home page.html";
+        }
+
+        // Salva os dados do instrutor
+        function saveInstructorData() {
+            const selectedClasses = [];
+            const classes = ["yoga", "pilates", "crossfit", "kickboxing"];
+
+            classes.forEach(id => {
+                const checkbox = document.getElementById(id);
+                if (checkbox.checked) {
+                    selectedClasses.push(checkbox.value);
+                }
+            });
+
+            let user = JSON.parse(localStorage.getItem("loggedInUser"));
+            user.classes = selectedClasses;
+
+            updateUserData(user);
+            alert("Dados de instrutor salvos com sucesso!");
+            window.location.href = "home page.html";
+        }
+
+        // Atualiza os dados no LocalStorage
+        function updateUserData(user) {
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            users = users.map(u => (u.email === user.email ? user : u));
+            localStorage.setItem("users", JSON.stringify(users));
+        }
+    </script>
+</body>
+</html>

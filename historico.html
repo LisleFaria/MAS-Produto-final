@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Aulas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        body {
+            font-family: "Poppins", Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .stars {
+            display: flex;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .star {
+            font-size: 24px;
+            color: gray;
+            transition: color 0.2s ease;
+        }
+        .star.selected {
+            color: gold;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #4a90e2;
+            background: linear-gradient(
+                180deg,
+                rgb(146, 163, 253) 0%,
+                rgb(157, 206, 255) 100%
+            );
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <a href="home page.html" class="back-button">← </a>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Minhas Aulas</h1>
+        <div id="aulasContainer"></div>
+    </div>
+
+    <script>
+        const aulasContainer = document.getElementById('aulasContainer');
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if (loggedInUser) {
+            // Obter as aulas inscritas do usuário
+            const aulasInscritas = loggedInUser.aulasInscritas || [];
+
+            if (aulasInscritas.length === 0) {
+                aulasContainer.innerHTML = '<p class="text-center">Você não está inscrito em nenhuma aula.</p>';
+            } else {
+                aulasInscritas.forEach(aula => {
+                    const aulaCard = document.createElement('div');
+                    aulaCard.className = 'card';
+                    aulaCard.innerHTML = `
+                        <div class="card-body">
+                            <h5 class="card-title">${aula.nome}</h5>
+                            <p class="card-text">Categoria: ${aula.categoria}</p>
+                            <p class="card-text"><small class="text-muted">Inscrito em: ${new Date(aula.dataInscricao).toLocaleDateString()}</small></p>
+                            <div class="stars" data-id="${aula.id}">
+                                ${[1, 2, 3, 4, 5].map(star => ` 
+                                    <i class="star far fa-star" data-value="${star}"></i>
+                                `).join('')}
+                            </div>
+                            <p class="text-success mt-2" id="avaliacao-${aula.id}">
+                                ${aula.avaliacao ? `Você avaliou com ${aula.avaliacao} estrelas.` : 'Avalie esta aula.'}
+                            </p>
+                            <button class="btn btn-danger mt-3" onclick="removerInscricao(${aula.id})">Remover Inscrição</button>
+                        </div>
+                    `;
+
+                    aulasContainer.appendChild(aulaCard);
+                });
+
+                // Função para atualizar estrelas da avaliação
+                document.querySelectorAll('.stars').forEach(starsContainer => {
+                    const aulaId = starsContainer.getAttribute('data-id');
+                    const stars = starsContainer.querySelectorAll('.star');
+
+                    stars.forEach(star => {
+                        star.addEventListener('click', () => {
+                            const rating = parseInt(star.dataset.value);
+                            saveRating(aulaId, rating);
+                            updateStars(stars, rating);
+                            updateRatingMessage(aulaId, rating);
+                        });
+
+                        // Recupera a avaliação salva
+                        const aula = loggedInUser.aulasInscritas.find(aula => aula.id == aulaId);
+                        const savedRating = aula?.avaliacao || 0;
+                        updateStars(stars, savedRating);
+                    });
+                });
+            }
+        } else {
+            aulasContainer.innerHTML = '<p class="text-center">Você não está logado.</p>';
+        }
+
+        function saveRating(aulaId, rating) {
+    const aulaIndex = loggedInUser.aulasInscritas.findIndex(aula => aula.id.toString() === aulaId.toString());
+    console.log("Índice da aula:", aulaIndex);
+    if (aulaIndex !== -1) {
+        loggedInUser.aulasInscritas[aulaIndex].avaliacao = rating;
+        localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+    }
+}
+
+        function updateStars(stars, rating) {
+            stars.forEach(star => {
+                if (parseInt(star.dataset.value) <= rating) {
+                    star.classList.add('selected', 'fas');
+                    star.classList.remove('far');
+                } else {
+                    star.classList.remove('selected', 'fas');
+                    star.classList.add('far');
+                }
+            });
+        }
+
+        function updateRatingMessage(aulaId, rating) {
+            const ratingMessage = document.getElementById(`avaliacao-${aulaId}`);
+            ratingMessage.innerText = `Você avaliou com ${rating} estrelas.`;
+        }
+
+        // Função para remover inscrição
+        function removerInscricao(aulaId) {
+    // Remove a aula da lista de aulas inscritas do usuário logado
+    loggedInUser.aulasInscritas = loggedInUser.aulasInscritas.filter(aula => aula.id !== aulaId);
+    
+    // Atualiza o localStorage com os dados atualizados do usuário logado
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+    
+    // Busca o usuário com o e-mail correspondente no localStorage e atualiza as aulas inscritas
+    const users = JSON.parse(localStorage.getItem("users")) || [];  // Lista de todos os usuários
+    const updatedUsers = users.map(user => {
+        if (user.email === loggedInUser.email) {
+            // Remove a aula da lista de aulas inscritas do usuário correspondente
+            user.aulasInscritas = user.aulasInscritas.filter(aula => aula.id !== aulaId);
+        }
+        return user;
+    });
+
+    // Atualiza o localStorage com os usuários modificados
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+    // Atualiza a interface
+    window.location.reload(); // Recarrega a página para refletir as mudanças
+}
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
