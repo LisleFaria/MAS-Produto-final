@@ -134,56 +134,17 @@
       <img src="https://play-lh.googleusercontent.com/Phfn3jufrHtx-mJYPqMqoO54eAJC29cvSelPnJrRXWCNXLOhepIsBnK0tu_MbnHyfo4">
       <a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
     </header>
+    
     <div class="container">
-      <!-- Saudações com nome do usuário -->
-      <div id="user-greeting" class="mb-3">
-          <h1>Olá, <span id="user-name"></span>!</h1>
-      </div>
-    </div>
-    <div class="container">
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="https://i.pinimg.com/736x/d8/d4/d7/d8d4d70aec56779246ef56292c9b4d07.jpg" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Histórico de aulas</h5>
-                <p class="card-text">Veja o quê foi feito nas suas últimas aulas e deixe uma avaliação.</p>
-                <a href="historico.html" class="button">Checar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="https://i.pinimg.com/736x/93/ae/c6/93aec605001d58e38846b49b79ca6834.jpg" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Planos alimentares</h5>
-                <p class="card-text">Descubra novas maneiras de se alimentar de forma saudável.</p>
-                <a href="planoalimentar.html" class="button">Explore</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="https://i.pinimg.com/736x/a8/2f/65/a82f65fb9abf871c354e8529d8691bd4.jpg" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Meta diária</h5>
-                <p class="card-text">Verifique o quanto falta para cumprir sua meta estabelecida.</p>
-                <a href="#" class="button">Clique aqui</a>
-              </div>
-            </div>
-          </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/15/92/e8/1592e8ff570eda86bbb0d09189035406.jpg" alt="Imagem da aula Força e Movimento Funcional" height="800">
+            <h2>Kickboxing e Preparação Física</h2>
+            <p>A aula Kickboxing e Preparação Física combina técnicas intensas de kickboxing com exercícios físicos voltados para o condicionamento e resistência.</p> 
+            <p>Com foco no fortalecimento muscular, agilidade e explosão física, essa prática oferece treinos dinâmicos e empolgantes, ideais para quem deseja melhorar o desempenho cardiovascular e adquirir habilidades de combate.</p> 
+            <p><strong>Duração:</strong> 1 hora<br> 
+              <strong>Horários:</strong> Segunda e quarta às 19h<br> 
+              <strong>Local:</strong> Estúdio de Artes Marciais</p>
+            <a href="Incricaoaula.html" class="button">Reservar Aula</a>
         </div>
     </div>
 
@@ -256,60 +217,23 @@
     <script>
       // Função para verificar se o usuário está logado
       function checkLogin() {
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (loggedInUser) {
-        const allUsers = JSON.parse(localStorage.getItem("users"));
-        // Se o usuário estiver logado, exibe a saudação com o nome dele
-        document.getElementById("user-name").textContent = loggedInUser.name;
-        const user = allUsers.find(u => u.email === loggedInUser.email);
-
+        const user = JSON.parse(localStorage.getItem("loggedInUser"));
+        
         if (user) {
-            // Atualiza o 'loggedInUser' com as mesmas características do usuário vinculado
-            // Aqui você pode atualizar todos os campos necessários
-            Object.assign(loggedInUser, user);
-            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+            // Se o usuário estiver logado, exibe a saudação com o nome dele
+            document.getElementById("user-name").textContent = user.name;
         } else {
-            console.error("Usuário vinculado não encontrado.");
+            // Caso contrário, redireciona para a página de login
+            alert("Você precisa estar logado!");
+            window.location.href = "login.html";
         }
-    } else {
-        // Caso contrário, redireciona para a página de login
-        alert("Você precisa estar logado!");
-        window.location.href = "login.html";
-    }
-  }
-
-  // Verifica se o usuário está logado ao carregar a página
-  document.addEventListener('DOMContentLoaded', checkLogin);
-
-  // Função de logout
-  function logout() {
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "login.html"; // Redireciona para a página de login
-  }
-      // Função para verificar o papel do usuário e ajustar o conteúdo
-      function adjustContentForRole() {
-          const user = JSON.parse(localStorage.getItem("loggedInUser"));
-          
-          if (user && user.isInstructor === true) {
-              // Ocultar outras seções
-              const allCards = document.querySelectorAll(".card");
-              
-              // Itera sobre todos os cards e oculta os que não são "Histórico de aulas"
-              allCards.forEach(card => {
-                  const title = card.querySelector(".card-title").textContent.trim();
-                  if (title !== "Histórico de aulas") {
-                      card.style.display = "none"; // Esconde os cards que não correspondem
-                  }
-              });
-          }
       }
 
-// Chama as funções ao carregar a página
-document.addEventListener("DOMContentLoaded", () => {
-    checkLogin(); // Garante que o usuário esteja logado
-    adjustContentForRole(); // Ajusta o conteúdo com base no papel
-});
-
+      // Função de logout
+      function logout() {
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "login.html"; // Redireciona para a página de login
+      }
 
       // Chama a função de verificação ao carregar a página
       document.addEventListener("DOMContentLoaded", checkLogin);

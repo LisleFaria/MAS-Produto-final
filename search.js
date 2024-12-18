@@ -1,13 +1,12 @@
-// Aulas
 const fakeClasses = [
-    { id: 1, name: "Yoga e Bem-Estar Integral", category: "Yoga" },
-    { id: 2, name: "Dinâmicas de Yoga e Consciência corporal", category: "Yoga" },
-    { id: 3, name: "Força e Movimento Funcional", category: "Crossfit" },
-    { id: 4, name: "Condicionamento de Alta Performance", category: "Crossfit" },
-    { id: 5, name: "Kickboxing e Preparação Física", category: "Kickboxing" },
-    { id: 6, name: "Técnicas de Combate e Força", category: "Kickboxing" },
-    { id: 7, name: "Força, Flexibilidade e Postura", category: "Pilates" },
-    { id: 8, name: "Pilates e Equilíbrio Corporal", category: "Pilates" }
+    { name: "Yoga e Bem-Estar Integral", category: "Yoga", link: "aula yoga1.html" },
+    { name: "Dinâmicas de Yoga e Consciência corporal", category: "Yoga", link: "aula yoga2.html" },
+    { name: "Força e Movimento Funcional", category: "Crossfit", link: "aula crossfit1.html" },
+    { name: "Condicionamento  de Alta Performance", category: "Crossfit", link: "aula crossfit2.html" },
+    { name: "Kickboxing e Preparação Física", category: "Kickboxing", link: "aula kickboxing1.html" },
+    { name: "Técnicas de Combate e Força", category: "Kickboxing", link: "aula kickboxing2.html" },
+    { name: "Força, Flexibilidade e Postura", category: "Pilates", link: "aula pilates1.html" },
+    { name: "Pilates e Equilíbrio Corporal", category: "Pilates", link: "aula pilates2.html" }
 ];
 
 function filterClasses() {
@@ -29,9 +28,7 @@ function filterClasses() {
     // Exibe os resultados ou diz que não tem aulas
     if (filteredClasses.length > 0) {
         classResults.innerHTML = filteredClasses.map(cls => 
-            `<div class="result-item" data-id="${cls.id}" style="cursor: pointer;">
-                ${cls.name} (${cls.category})
-            </div>`
+            `<div class="result-item"><a href="${cls.link}">${cls.name} (${cls.category})</a></div>`
         ).join('');
         classResults.style.display = 'block';
     } else {
@@ -56,22 +53,11 @@ function filterClasses() {
     }
 }
 
-function displayAllClasses() {
-    const classResults = document.getElementById('classResults');
-    classResults.innerHTML = fakeClasses.map(cls =>
-        `<div class="result-item" data-id="${cls.id}" style="cursor: pointer;">
-            ${cls.name} (${cls.category})
-        </div>`
-    ).join('');
-    classResults.style.display = 'block';
-}
-
-// Alternar visibilidade do filtro
 document.getElementById('toggleFilters').addEventListener('click', function () {
-        const filterContainer = document.getElementById('filterContainer');
-    if (filterContainer.style.display === 'none' || filterContainer.style.display === '') {
-        filterContainer.style.display = 'block';
-    } else {
-        filterContainer.style.display = 'none';
-    }
+  const filterContainer = document.getElementById('filterContainer');
+  if (filterContainer.style.display === 'none' || filterContainer.style.display === '') {
+      filterContainer.style.display = 'block';
+  } else {
+      filterContainer.style.display = 'none';
+  }
 });
