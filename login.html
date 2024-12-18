@@ -72,21 +72,63 @@
     </div>
 
     <script>
+        // Adicionar usuários iniciais sem duplicados
+        function initializeUsers() {
+            let existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Usuários iniciais
+            const newUsers = [
+                {
+                    name: "Helder Zagalo",
+                    email: "htz@ua.pt",
+                    password: "1234",
+                    weight: 80,
+                    height: 180,
+                    isInstructor: false,
+                },
+                {   
+                    classes: ["Yoga", "Pilates", "Crossfit", "Kickboxing"],
+                    email: "htzfit@ua.pt",
+                    isInstructor: true,
+                    name: "Helder Instrutor",
+                    password: "1234",
+                },
+            ];
+
+            // Adicionar novos usuários sem duplicados
+            newUsers.forEach((newUser) => {
+                if (!existingUsers.some((user) => user.email === newUser.email)) {
+                    existingUsers.push(newUser);
+                }
+            });
+
+            // Atualizar o localStorage
+            localStorage.setItem("users", JSON.stringify(existingUsers));
+        }
+
+        // Função para realizar login
         function loginUser() {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            let users = JSON.parse(localStorage.getItem("users")) || [];
+            // Buscar usuários do localStorage
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Verificar se o usuário existe
             const user = users.find(u => u.email === email && u.password === password);
 
             if (user) {
+                // Armazenar usuário logado no localStorage
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
                 alert("Login bem-sucedido!");
-                window.location.href = "home page.html"; // Redireciona para completar o perfil
+                window.location.href = "home page.html"; // Redireciona para a página inicial
             } else {
                 alert("Email ou senha incorretos!");
             }
         }
+
+        // Inicializar os usuários ao carregar a página
+        document.addEventListener("DOMContentLoaded", initializeUsers);
     </script>
 </body>
 </html>
