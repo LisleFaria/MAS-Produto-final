@@ -108,24 +108,27 @@
 
         // Função para realizar login
         function loginUser() {
+            console.log("Login function executed");
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
-
-            // Buscar usuários do localStorage
+        
             const users = JSON.parse(localStorage.getItem("users")) || [];
-
-            // Verificar se o usuário existe
+        
+            console.log("Users in storage:", users);
+        
             const user = users.find(u => u.email === email && u.password === password);
-
+        
             if (user) {
-                // Armazenar usuário logado no localStorage
+                console.log("User found:", user);
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
                 alert("Login bem-sucedido!");
-                window.location.href = "home page.html"; // Redireciona para a página inicial
+                window.location.href = "home page.html";
             } else {
+                console.log("Invalid credentials");
                 alert("Email ou senha incorretos!");
             }
         }
+
 
         // Inicializar os usuários ao carregar a página
         document.addEventListener("DOMContentLoaded", initializeUsers);
