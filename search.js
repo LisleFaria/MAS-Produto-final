@@ -17,26 +17,36 @@ function filterClasses() {
     if (document.getElementById("category3").checked) selectedCategories.push("Kickboxing");
     if (document.getElementById("category4").checked) selectedCategories.push("Pilates");
 
+    // Verifica se ambos os campos estão vazios
+    const noSearchQuery = searchQuery.trim() === "";
+    const noSelectedCategories = selectedCategories.length === 0;
+
+    // Retorna apenas as aulas que atendem aos filtros
     const filteredClasses = fakeClasses.filter(cls => {
         const matchesSearch = cls.name.toLowerCase().includes(searchQuery);
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(cls.category);
+        const matchesCategory = noSelectedCategories || selectedCategories.includes(cls.category);
         return matchesSearch && matchesCategory;
     });
 
     const classResults = document.getElementById('classResults');
-    
-    // Exibe os resultados ou diz que não tem aulas
+
+    // Exibe os resultados filtrados
     if (filteredClasses.length > 0) {
-        classResults.innerHTML = filteredClasses.map(cls => 
+        classResults.innerHTML = filteredClasses.map(cls =>
             `<div class="result-item" data-id="${cls.id}"><a href="${cls.link}">${cls.name} (${cls.category})</a></div>`
         ).join('');
         classResults.style.display = 'block';
+    } else if (noSearchQuery && noSelectedCategories) {
+        // Se não houver filtros ou pesquisa, exibe uma mensagem
+        classResults.innerHTML = '<p>Use a pesquisa ou filtros para encontrar aulas.</p>';
+        classResults.style.display = 'block';
     } else {
+        // Exibe uma mensagem se nenhum resultado for encontrado
         classResults.innerHTML = '<p>Não foram encontradas aulas.</p>';
         classResults.style.display = 'block';
     }
 
-    // Agora vamos adicionar o evento de clique nas aulas
+    // Adiciona o evento de clique nas aulas encontradas
     document.querySelectorAll('.result-item').forEach(item => {
         item.addEventListener('click', function () {
             const classId = parseInt(this.getAttribute('data-id'));
@@ -48,13 +58,9 @@ function filterClasses() {
             }
         });
     });
-
-    // Se não tiver filtros ativos e a pesquisa vazia, exibe todas as aulas
-    if (selectedCategories.length === 0 && searchQuery === '') {
-        displayAllClasses();
-    }
 }
 
+// Corrige o evento do botão de filtro
 document.getElementById('toggleFilters').addEventListener('click', function () {
     const filterContainer = document.getElementById('filterContainer');
     if (filterContainer.style.display === 'none' || filterContainer.style.display === '') {

@@ -74,6 +74,7 @@
     <script>
         const aulasContainer = document.getElementById('aulasContainer');
         const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+        const users = JSON.parse(localStorage.getItem("users"));
         const aulas = JSON.parse(localStorage.getItem('aulas')) || [
             { id: 1, name: "Yoga e Bem-Estar Integral", category: "Yoga" },
             { id: 2, name: "Dinâmicas de Yoga e Consciência corporal", category: "Yoga" },
@@ -84,7 +85,19 @@
             { id: 7, name: "Força, Flexibilidade e Postura", category: "Pilates" },
             { id: 8, name: "Pilates e Equilíbrio Corporal", category: "Pilates" }
         ];
-
+        function calcularMediaAvaliacao(aulaId) {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const avaliacoes = users.flatMap(user => 
+        (user.aulasInscritas || [])
+            .filter(aula => aula.id === aulaId && aula.avaliacao)
+            .map(aula => aula.avaliacao)
+    );
+    if (avaliacoes.length === 0) {
+        return "Sem avaliações";
+    }
+    const soma = avaliacoes.reduce((total, avaliacao) => total + avaliacao, 0);
+    return (soma / avaliacoes.length).toFixed(1); // Média com 1 casa decimal
+}
         // Verificar se o usuário está logado
         if (loggedInUser) {
             const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -95,13 +108,15 @@
                 const aulasDeEspecialidades = aulas.filter(aula => especialidades.includes(aula.category));
 
                 aulasDeEspecialidades.forEach(aula => {
-                    const aulaCard = document.createElement('div');
+                    const aulaCard = document.createElement('div'); 
+                    const mediaAvaliacao = calcularMediaAvaliacao(aula.id);
                     aulaCard.className = 'card';
                     aulaCard.innerHTML = `
                         <div class="card-body">
                             <h5 class="card-title">${aula.name}</h5>
                             <p class="card-text">Categoria: ${aula.category}</p>
                             <p class="card-text"><small class="text-muted">Inscritos: ${getUsersInClass(aula.id).length}</small></p>
+                            <p class="card-text"><small class="text-muted" id="media-${aula.id}">Avaliação: ${mediaAvaliacao}</small></p>
                             <button class="btn btn-info" onclick="mostrarInscritos(${aula.id})">Ver Inscritos</button>
                         </div>
                     `;
@@ -124,11 +139,13 @@
                 } else {
                     aulasInscritas.forEach(aula => {
                         const aulaCard = document.createElement('div');
+                        const mediaAvaliacao = calcularMediaAvaliacao(aula.id);
                         aulaCard.className = 'card';
                         aulaCard.innerHTML = `
                             <div class="card-body">
                                 <h5 class="card-title">${aula.nome}</h5>
                                 <p class="card-text">Categoria: ${aula.categoria}</p>
+                                <p class="card-text"><small class="text-muted" id="media-${aula.id}">Avaliação: ${mediaAvaliacao}</small></p>
                                 <p class="card-text"><small class="text-muted">Inscrito em: ${new Date(aula.dataInscricao).toLocaleDateString()}</small></p>
                                 <div class="stars" data-id="${aula.id}">
                                     ${[1, 2, 3, 4, 5].map(star => 
@@ -181,17 +198,8 @@
         }
     });
 }
-    function saveRating(aulaId, rating) {
-    // Salva a avaliação no localStorage
-    const aulas = JSON.parse(localStorage.getItem("aulas")) || [];
-    const aulaIndex = aulas.findIndex(aula => aula.id === aulaId);
-    if (aulaIndex !== -1) {
-        // Atualiza a avaliação da aula
-        aulas[aulaIndex].avaliacao = rating;
-        localStorage.setItem("aulas", JSON.stringify(aulas));
-    }
-
-    // Atualiza a avaliação no usuário
+function saveRating(aulaId, rating) {
+    // Atualiza a avaliação no loggedInUser
     const updatedUser = { ...loggedInUser };
     updatedUser.aulasInscritas = updatedUser.aulasInscritas.map(aula => {
         if (aula.id === aulaId) {
@@ -200,20 +208,41 @@
         return aula;
     });
     localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
+
+    // Atualiza a avaliação nos users
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const updatedUsers = users.map(user => {
+        if (user.email === updatedUser.email) {
+            user.aulasInscritas = updatedUser.aulasInscritas;
+        }
+        return user;
+    });
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+    // Recalcular a média de avaliações e atualizar no DOM
+    const novaMedia = calcularMediaAvaliacao(aulaId);
+    const mediaElement = document.getElementById(`media-${aulaId}`);
+    if (mediaElement) {
+        mediaElement.innerText = `Avaliação: ${novaMedia}`;
+    }
+
+    // Atualiza visualmente as estrelas
+    const stars = document.querySelectorAll(`.stars[data-id="${aulaId}"] .star`);
+    updateStars(stars, rating);
 }
 
-        function updateStars(stars, rating) {
-            stars.forEach(star => {
-                if (parseInt(star.dataset.value) <= rating) {
-                    star.classList.add('selected', 'fas');
-                    star.classList.remove('far');
-                } else {
-                    star.classList.remove('selected', 'fas');
-                    star.classList.add('far');
-                }
-            });
-        }
 
+function updateStars(stars, rating) {
+    stars.forEach(star => {
+        if (parseInt(star.dataset.value) <= rating) {
+            star.classList.add('selected', 'fas');
+            star.classList.remove('far');
+        } else {
+            star.classList.remove('selected', 'fas');
+            star.classList.add('far');
+        }
+    });
+}
         function updateRatingMessage(aulaId, rating) {
             const ratingMessage = document.getElementById(`avaliacao-${aulaId}`);
             ratingMessage.innerText = `Você avaliou com ${rating} estrelas.`;

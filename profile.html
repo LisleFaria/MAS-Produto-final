@@ -164,6 +164,15 @@
                 <label for="altura" class="form-label">Altura (cm)</label>
                 <input type="number" class="form-control" id="altura">
             </div>
+            <div class="specialties-container" id="specialtiesContainer">
+                <div class="mb-3">
+                    <label for="specialties" class="form-label">Especialidades (aulas que dá)</label><br />
+                    <label><input type="checkbox" id="yoga" value="Yoga"> Yoga</label><br />
+                    <label><input type="checkbox" id="crossfit" value="Crossfit"> Crossfit</label><br />
+                    <label><input type="checkbox" id="kickboxing" value="Kickboxing"> Kickboxing</label><br />
+                    <label><input type="checkbox" id="pilates" value="Pilates"> Pilates</label><br />
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
         </form>
         <br />
@@ -245,13 +254,12 @@
 
         // Verificar se o usuário é um instrutor e exibir campos de especialidades e senha
         if (userData.isInstructor === true) {
-            document.getElementById('specialtiesContainer').style.display = 'block'; // Exibe as especialidades
-            // Preencher os checkboxes com as especialidades selecionadas
-            document.getElementById('pesoo').style.display = 'none';
-            document.getElementById('alturaa').style.display = 'none';
-        } else {
-            document.getElementById('specialtiesContainer').style.display = 'none'; // Ocultar especialidades
-        }
+    document.getElementById('specialtiesContainer').style.display = 'block'; // Exibe as especialidades
+    document.getElementById('pesoo').style.display = 'none';
+    document.getElementById('alturaa').style.display = 'none';
+} else {
+    document.getElementById('specialtiesContainer').style.display = 'none'; // Ocultar especialidades
+}
     } else {
         alert('Nenhum usuário encontrado no perfil.');
         window.location.href = 'login.html'; // Redireciona para login caso não haja dados no localStorage
@@ -263,39 +271,46 @@
         document.querySelector('.profileForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    // Recupera o usuário do localStorage
+    // Recupera os dados do usuário atual
     const userData = JSON.parse(localStorage.getItem('loggedInUser'));
 
-    // Cria um objeto para armazenar as alterações
-    let updatedUser
-    if (userData.isInstructor === true){
+    // Atualiza os dados do usuário conforme os campos preenchidos
+    let updatedUser;
+    if (userData.isInstructor === true) {
+        const selectedClasses = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((checkbox) => checkbox.value);
         updatedUser = {
-        ...userData, // Mantém os dados antigos
-        name: document.getElementById('nome').value, // Atualiza nome
-        email: document.getElementById('email').value, // Atualiza email
-    };
-}
-    else {
+            ...userData,
+            name: document.getElementById('nome').value,
+            email: document.getElementById('email').value,
+            classes: selectedClasses.length > 0 ? selectedClasses : userData.classes, // Só atualiza as aulas se houver seleção
+        };
+    } else {
         updatedUser = {
-        ...userData, // Mantém os dados antigos
-        name: document.getElementById('nome').value, // Atualiza nome
-        email: document.getElementById('email').value, // Atualiza email
-        weight: document.getElementById('peso').value, // Atualiza peso
-        height: document.getElementById('altura').value // Atualiza altura
-    };
+            ...userData,
+            name: document.getElementById('nome').value,
+            email: document.getElementById('email').value,
+            weight: document.getElementById('peso').value,
+            height: document.getElementById('altura').value,
+        };
     }
 
-    // Verifica se o campo de senha não está vazio antes de atualizar a senha
+    // Atualiza a senha, se fornecida
     const newPassword = document.getElementById('senha').value;
     if (newPassword) {
-        updatedUser.password = newPassword; // Atualiza a senha
+        updatedUser.password = newPassword;
     }
 
-    // Armazena o objeto atualizado no localStorage
-    localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
+    // Atualiza o usuário no array de usuários
+    const users = JSON.parse(localStorage.getItem('users')) || []; // Recupera todos os usuários
+    const updatedUsers = users.map((user) => (user.email === userData.email ? updatedUser : user));
+
+    // Salva os dados atualizados no localStorage
+    localStorage.setItem('users', JSON.stringify(updatedUsers)); // Atualiza a lista de usuários
+    localStorage.setItem('loggedInUser', JSON.stringify(updatedUser)); // Atualiza o usuário logado
 
     alert('Alterações salvas com sucesso!');
 });
+
 
 
         // Carregar os dados do perfil quando a página for carregada
