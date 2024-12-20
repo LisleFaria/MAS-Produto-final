@@ -110,32 +110,22 @@
         function loginUser() {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
-        
-            // Fetch users from localStorage
+
+            // Buscar usuários do localStorage
             const users = JSON.parse(localStorage.getItem("users")) || [];
-        
-            // Find the matching user
+
+            // Verificar se o usuário existe
             const user = users.find(u => u.email === email && u.password === password);
-        
+
             if (user) {
-                // Save logged-in user to localStorage
+                // Armazenar usuário logado no localStorage
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
-        
-                // Ensure alert is triggered
-                setTimeout(() => {
-                    alert("Login bem-sucedido!");
-                }, 100); // Slight delay ensures proper detection
-                window.location.href = "home page.html";
+                alert("Login bem-sucedido!");
+                window.location.href = "home page.html"; // Redireciona para a página inicial
             } else {
-                // Handle incorrect login
-                setTimeout(() => {
-                    alert("Email ou senha incorretos!");
-                }, 100);
-            }
-        }
-
-        
-
+                alert("Email ou senha incorretos!");
+            }
+        }
 
         // Inicializar os usuários ao carregar a página
         document.addEventListener("DOMContentLoaded", initializeUsers);
