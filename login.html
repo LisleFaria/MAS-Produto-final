@@ -122,9 +122,6 @@
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
                 alert("Login bem-sucedido!");
                 window.location.href = "home page.html"; // Redireciona para a página inicial
-                let alert = await driver.switchTo().alert();
-                let alertText = await alert.getText();
-                await alert.accept();
             } else {
                 alert("Email ou senha incorretos!");
             }
